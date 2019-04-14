@@ -183,9 +183,9 @@ UnreliableDataRetrieval::onData(const Interest& interest, const Data& data)
         m_currentWindowSize++;
       }
 
-      if (!data.getFinalBlockId().empty()) {
+      if (!data.getFinalBlock().value().empty()) {
         m_isFinalBlockNumberDiscovered = true;
-        m_finalBlockNumber = data.getFinalBlockId().toSegment();
+        m_finalBlockNumber = data.getFinalBlock().value().toSegment();
       }
 
       const Block content = data.getContent();

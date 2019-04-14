@@ -683,9 +683,9 @@ ReliableDataRetrieval::onContentData(const ndn::Interest& interest, const ndn::D
       m_context->setContextOption(CURRENT_WINDOW_SIZE, m_currentWindowSize);
     }
 
-    if (!data.getFinalBlock().empty()) {
+    if (!data.getFinalBlock().value().empty()) {
       m_isFinalBlockNumberDiscovered = true;
-      m_finalBlockNumber = data.getFinalBlock().toSegment();
+      m_finalBlockNumber = data.getFinalBlock().value().toSegment();
     }
 
     m_receiveBuffer[data.getName().get(-1).toSegment()] = data.shared_from_this();
