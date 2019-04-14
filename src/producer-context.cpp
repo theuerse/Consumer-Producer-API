@@ -277,7 +277,7 @@ Producer::produce(Name suffix, const uint8_t* buf, size_t bufferSize)
         }
 
         manifestSegment = make_shared<Manifest>(manifestName); // new empty manifest
-        manifestSegment->setFinalBlockId(name::Component::fromSegment(currentSegment + numberOfSegments - packagedSegments));
+        manifestSegment->setFinalBlock(name::Component::fromSegment(currentSegment + numberOfSegments - packagedSegments));
 
         finalSegment = currentSegment;
         needManifestSegment = false;
@@ -306,7 +306,7 @@ Producer::produce(Name suffix, const uint8_t* buf, size_t bufferSize)
         bytesPackaged += freeSpaceForContent;
       }
 
-      dataSegment->setFinalBlockId(name::Component::fromSegment(currentSegment + numberOfSegments - packagedSegments - 1));
+      dataSegment->setFinalBlock(name::Component::fromSegment(currentSegment + numberOfSegments - packagedSegments - 1));
 
       passSegmentThroughCallbacks(dataSegment);
       currentSegment++;
@@ -346,7 +346,7 @@ Producer::produce(Name suffix, const uint8_t* buf, size_t bufferSize)
       shared_ptr<Data> data = make_shared<Data>(fullName);
       data->setFreshnessPeriod(time::milliseconds(m_dataFreshness));
 
-      data->setFinalBlockId(name::Component::fromSegment(numberOfSegments + currentSegment - 1));
+      data->setFinalBlock(name::Component::fromSegment(numberOfSegments + currentSegment - 1));
 
       if (i == numberOfSegments + currentSegment - 1) // last segment
       {
