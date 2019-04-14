@@ -335,9 +335,9 @@ ReliableDataRetrieval::onManifestData(const ndn::Interest& interest, const ndn::
 
       // data segment is verified with manifest
       if (verifySegmentWithManifest(*manifest, *(it->second))) {
-        if (!it->second->getFinalBlockId().empty()) {
+        if (!it->second->getFinalBlock().value().empty()) {
           m_isFinalBlockNumberDiscovered = true;
-          m_finalBlockNumber = it->second->getFinalBlockId().toSegment();
+          m_finalBlockNumber = it->second->getFinalBlock().value().toSegment();
         }
 
         m_receiveBuffer[it->second->getName().get(-1).toSegment()] = it->second;
@@ -683,9 +683,9 @@ ReliableDataRetrieval::onContentData(const ndn::Interest& interest, const ndn::D
       m_context->setContextOption(CURRENT_WINDOW_SIZE, m_currentWindowSize);
     }
 
-    if (!data.getFinalBlockId().empty()) {
+    if (!data.getFinalBlock().empty()) {
       m_isFinalBlockNumberDiscovered = true;
-      m_finalBlockNumber = data.getFinalBlockId().toSegment();
+      m_finalBlockNumber = data.getFinalBlock().toSegment();
     }
 
     m_receiveBuffer[data.getName().get(-1).toSegment()] = data.shared_from_this();
