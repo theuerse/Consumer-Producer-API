@@ -30,7 +30,7 @@ namespace tlv {
 
 using namespace ndn::tlv;
 
-enum { ContentType_Manifest = 4, ManifestCatalogue = 128, KeyValuePair = 129 };
+enum { ManifestCatalogue = 128, KeyValuePair = 129 };
 
 } // namespace tlv
 } // namespace ndn
