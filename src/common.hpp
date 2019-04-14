@@ -45,7 +45,7 @@
 #include <unistd.h>
 #include <utility>
 
-#include <ndn-cxx/common.hpp>
+#include <ndn-cxx/detail/common.hpp>
 #include <ndn-cxx/data.hpp>
 #include <ndn-cxx/face.hpp>
 #include <ndn-cxx/interest.hpp>
